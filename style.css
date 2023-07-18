@@ -5,7 +5,7 @@ body{
     margin: 0;
 }
 
-h1, h2, h3, h4, h5, p, span{
+h2, h3, h4, h5, p, span{
     margin: 0;
     color: #666;
 }
@@ -65,4 +65,11 @@ nav::after{
 }
 .nav-container li a:hover{
     color: rgb(134, 1, 1);
+}
+main{
+    margin-top: 100px;
+    text-align: center;
+}
+th{
+    padding: 40px;
 }
