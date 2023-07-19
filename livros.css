@@ -4,23 +4,16 @@ html{
 body{
     margin: 0;
 }
-
-h2, h3, h4, h5, p, span{
-    margin: 0;
-    color: #666;
-}
 .container{
     max-width: 1090px;
     width: 100%;
 }
-
 header{
     position: relative;
     top: 0;
     height: auto;
     width: 100%;
 }
-
 nav{
     position: fixed;
     top: 0;
@@ -35,7 +28,6 @@ nav::after{
     content: "";
     display: block;
 }
-
 .nav-container{
     max-width: 1200px;
     position: relative;
@@ -66,10 +58,17 @@ nav::after{
 .nav-container li a:hover{
     color: rgb(134, 1, 1);
 }
-main{
-    margin-top: 100px;
+.titulo{
+    margin-top: 115px;
+}   
+table, th, tr, td{
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, tr, td{
     text-align: center;
+    padding: 0px 7px;
 }
 th{
-    padding: 40px;
+    padding: 5;
 }
