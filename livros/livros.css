@@ -1,18 +1,23 @@
 html{
     font-family: 'Open Sans', sans-serif;
+    background-color: rgb(240, 229, 208)
 }
 body{
     margin: 0;
+    margin-left: 15px;
+    background-color: rgb(240, 229, 208);
 }
 .container{
     max-width: 1090px;
     width: 100%;
+    background-color: rgb(240, 229, 208);
 }
 header{
     position: relative;
     top: 0;
     height: auto;
     width: 100%;
+    background-color: rgb(240, 229, 208);
 }
 nav{
     position: fixed;
@@ -20,8 +25,8 @@ nav{
     height: 100px;
     width: 100%;
     z-index: 1;
-    background-color: #FFF;
-    border-bottom: 1px solid #CCC;
+    background-color: rgb(240, 229, 208);
+    border-bottom: 1px solid #020000;
 }
 nav::after{
     clear: both;
@@ -52,7 +57,7 @@ nav::after{
 }
 .nav-container li a{
     text-decoration: none;
-    color: #666;
+    color: #000000;
     transition: .5s;
 }
 .nav-container li a:hover{
