@@ -1,102 +1,66 @@
 
-//{1 : ["1", "2"], 2 : ["FACE", "ICEX", "DIREITO"]}
-
-function getUniqueValuesFromColumn() {
-
-    var unique_col_values_dict = {}
-
-    allFilters = document.querySelectorAll(".table-filter")
-    allFilters.forEach((filter_i) => {
-        col_index = filter_i.parentElement.getAttribute("col-index");
-        
-        const rows = document.querySelectorAll("#emp-table > tbody > tr")
-
-        rows.forEach((row) => {
-            cell_value = row.querySelector("td:nth-child("+col_index+")").innerHTML;
-
-            if (col_index in unique_col_values_dict) {
-
-                if (unique_col_values_dict[col_index].includes(cell_value)) {
-                    //alert(cell_value + "is already present in the array : " + unique_col_values_dict[col_index])
-                } else {
-                    unique_col_values_dict[col_index].push(cell_value)
-                    //alert("Array after adding the cell value : " + unique_col_values_dict[col_index])
-                }
-
-
-            } else {
-                unique_col_values_dict[col_index] = new Array(cell_value)
+        // JavaScript code goes here
+        document.addEventListener('DOMContentLoaded', function () {
+          const table = document.getElementById('emp-table');
+          const rows = table.getElementsByTagName('tr');
+          const predioFilter = document.createElement('select');
+          const periodoFilter = document.createElement('select');
+    
+          // Add an "all" option to the filters
+          const allOption = document.createElement('option');
+          allOption.textContent = 'All';
+          predioFilter.appendChild(allOption.cloneNode(true));
+          periodoFilter.appendChild(allOption);
+    
+          // Get unique values for 'Prédio' and 'Período' columns
+          const predioValues = new Set();
+          const periodoValues = new Set();
+    
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            const predioCell = row.getElementsByTagName('td')[0];
+            const periodoCell = row.getElementsByTagName('td')[1];
+    
+            predioValues.add(predioCell.textContent);
+            periodoValues.add(periodoCell.textContent);
+          }
+    
+          // Create options for 'Prédio' filter
+          predioValues.forEach((value) => {
+            const option = document.createElement('option');
+            option.textContent = value;
+            predioFilter.appendChild(option);
+          });
+    
+          // Create options for 'Período' filter
+          periodoValues.forEach((value) => {
+            const option = document.createElement('option');
+            option.textContent = value;
+            periodoFilter.appendChild(option);
+          });
+    
+          // Add event listeners to the filters
+          predioFilter.addEventListener('change', filterTable);
+          periodoFilter.addEventListener('change', filterTable);
+    
+          // Insert the filters into the table header
+          table.rows[0].cells[0].appendChild(predioFilter);
+          table.rows[0].cells[1].appendChild(periodoFilter);
+    
+          // Function to filter the table
+          function filterTable() {
+            const selectedPredio = predioFilter.value;
+            const selectedPeriodo = periodoFilter.value;
+    
+            for (let i = 1; i < rows.length; i++) {
+              const row = rows[i];
+              const predioCell = row.getElementsByTagName('td')[0];
+              const periodoCell = row.getElementsByTagName('td')[1];
+    
+              const predioMatch = selectedPredio === 'All' || predioCell.textContent === selectedPredio;
+              const periodoMatch = selectedPeriodo === 'All' || periodoCell.textContent === selectedPeriodo;
+    
+              row.style.display = predioMatch && periodoMatch ? 'table-row' : 'none';
             }
-
-
+          }
         });
-        
-
-    });
-
-    for(i in unique_col_values_dict) {
-        alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);
-    }
-
-    updateSelectOptions(unique_col_values_dict)
-
-};
-
-function updateSelectOptions(unique_col_values_dict) {
-    allFilters = document.querySelectorAll(".table-filter")
-
-    allFilters.forEach((filter_i) => {
-        col_index - filter_i.parentElement.getAttribute('col-index')
-
-        unique_col_values_dict[col_index].forEach((i) => {
-            filter_i.innerHTML = filter_i.innerHTML + `\n<option value="${i}">${i}<option>`
-        });
-    });
-};
-
-function filter_rows() {
-    allFilters = document.querySelectorAll(".table-filter")
-    var filter_value_dict = {}
-
-    allFilters.forEach((filter_i) => {
-        col_index = filter_i.parentElement.getAttribute('col-index')
-
-        value = filter_i.value
-        if (value != "all") {
-            filter_value_dict[col_index] = value;
-        
-        }
-    });
-
-    var col_cell_value_dict = {};
-
-    const rows = document.querySelectorAll("#emp-table tbody tr");
-    rows.forEach((row) => {
-        var display_row = true;
-
-        allFilters.forEach((filter_i) => {
-            col_index = filter_i.parentElement.getAttribute('col-index')
-            col_cell_value_dict[col_index] = row.querySelector("td:nth-child(" + col_index+ ")").innerHTML
-        })
-
-        for (var col_i in filter_value_dict) {
-            filter_value = filter_value_dict[col_i]
-            row_cell_value = col_cell_value_dict[col_i]
-            
-            if (row_cell_value.indexOf(filter_value) == -1 && filter_value != "all") {
-                display_row = false;
-                break;
-            }
-
-
-        }
-
-        if (display_row == true) {
-            row.style.display = "table-row"
-
-        } else {
-            row.style.display = "none"
-
-        }
-    })
-}
