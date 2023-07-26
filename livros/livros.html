@@ -28,10 +28,18 @@
             <h1>Livros</h1>
         </div>
         <div class="tabela">
-            <table>
+            <table id="emp-table">
                 <tr>
-                    <th>Prédio</th>
-                    <th>Período</th>
+                    <th col-index = 1>Prédio
+                        <select class="table-filter">
+                            <option value="all"></option>
+                        </select>
+                    </th>
+                    <th col-index = 2>Período
+                        <select class="table-filter">
+                            <option value="all"></option>
+                        </select>
+                    </th>
                     <th>Matéria</th>
                     <th>Livro</th>
                 </tr>
@@ -74,6 +82,11 @@
             </table>
         </div>
     </div>
+
+<script>
+</script>
+
 <script src="livros.js"></script>
+
 </body>
 </html>
