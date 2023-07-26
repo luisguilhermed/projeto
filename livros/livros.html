@@ -30,12 +30,12 @@
     <table id="emp-table">
         <thead>
             <th col-index = 1>Prédio
-                <select class="table-filter">
+                <select class="table-filter" onchange="filter_rows()">
                     <option value="all"></option>
                 </select>
             </th>
             <th col-index = 2>Período
-                <select class="table-filter">
+                <select class="table-filter" onchange="filter_rows()">
                     <option value="all"></option>
                 </select>
             </th>
@@ -45,7 +45,7 @@
         <tbody>
             <tr>
                 <td>FACE</td>
-                <td>1</td>
+                <td>2</td>
                 <td>Investimento e cálculo financeiro</td>
                 <td><a href="#">***</a></td>
             </tr>
@@ -91,8 +91,5 @@
 
     </script>
 </div>
-
-<script>
-</script>
 </body>
 </html>
