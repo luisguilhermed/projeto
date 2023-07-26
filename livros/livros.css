@@ -77,3 +77,11 @@ th, tr, td{
 th{
     padding: 5;
 }
+
+
+select{
+    background-color: rgb(240, 229, 208);
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    margin-bottom: 3px;
+}
